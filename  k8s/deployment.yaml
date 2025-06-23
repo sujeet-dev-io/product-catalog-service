@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-v1
+  namespace: catalog-v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: catalog-v1
+  template:
+    metadata:
+      labels:
+        app: catalog-v1
+    spec:
+      containers:
+        - name: catalog-v1
+          image: devdot021/product-catalog-service:v1.0
+          ports:
+            - containerPort: 8080
