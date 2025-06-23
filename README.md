@@ -24,8 +24,6 @@ This is a Spring Boot-based REST API that provides product listing, search, filt
 ]
 ```
 
----
-
 ### 📦 Get All Products
 
 * **URL**: `http://localhost:8080/products`
@@ -56,8 +54,6 @@ This is a Spring Boot-based REST API that provides product listing, search, filt
 ]
 ```
 
----
-
 ### ❤️ Health Check
 
 * **URL**: `http://localhost:8080/health`
@@ -68,8 +64,6 @@ This is a Spring Boot-based REST API that provides product listing, search, filt
 ```text
 Product catalog service is healthy.
 ```
-
----
 
 ### 🎯 Filter Products by Price Range
 
@@ -102,9 +96,70 @@ Product catalog service is healthy.
 
 ---
 
-## ✅ Status
+## 🚀 Deployment Instructions
 
-* Fully working ✅
-* Tested with `Spring Boot` + `Postman`
+### 🖥️ Local (Docker)
+
+```bash
+# 1. Build Docker image
+docker build -t devdot021/product-catalog-service:v1.0.0 .
+
+# 2. Run container
+docker run -p 8080:8080 devdot021/product-catalog-service:v1.0.0
+
+# 3. Test API
+curl http://localhost:8080/products
+```
+
+### ☸️ Kubernetes (Minikube)
+
+```bash
+# 1. Start Minikube
+minikube start
+
+# 2. Create namespace
+kubectl create namespace product-catalog
+
+# 3. Apply resources
+kubectl apply -f k8s/ -n product-catalog
+
+# 4. Expose service (NodePort or Ingress)
+minikube service product-catalog-service -n product-catalog
+```
+
+---
+
+## 🔄 CI/CD Pipeline (GitHub Actions)
+
+* GitHub Actions used for CI/CD pipeline.
+* On every push to `main` branch:
+
+  1. Docker image is built using multi-stage Dockerfile
+  2. Image is pushed to Docker Hub: `devdot021/product-catalog-service`
+* Workflow file path: `.github/workflows/docker-image.yml`
+
+### 🔐 GitHub Secrets
+
+* `DOCKER_USERNAME`
+* `DOCKER_PASSWORD`
+
+🧪 *Future Improvement*: Add CD for auto `kubectl apply` to a cluster.
+
+---
+
+## 📊 Logging & Monitoring (Basic)
+
+* Uses Spring Boot's default logging (Logback)
+* View logs using:
+
+  * `docker logs <container-id>`
+  * `kubectl logs <pod-name> -n product-catalog`
+
+### Optional Advanced Setup
+
+* Integrate **Prometheus + Grafana** for metrics
+* Add **Spring Actuator** for `/health` and `/metrics`
+
+---
 
 > Author: *Sujeet Prajapati*
