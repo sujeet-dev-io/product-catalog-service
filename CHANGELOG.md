@@ -26,3 +26,4 @@ All notable changes to this project will be documented in this file.
 - `/health` endpoint to verify service health
 - Dockerized using multi-stage build
 - Kubernetes deployment setup with service and ingress
+Done
