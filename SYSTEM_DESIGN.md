@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🧱 System Design: Product Catalog Microservice
 
 ## 1. 📝 Overview
@@ -45,3 +46,5 @@ resources:
   limits:
     memory: "512Mi"
     cpu: "500m"
+=======
+>>>>>>> 19b748f (Trigger Docker build)
